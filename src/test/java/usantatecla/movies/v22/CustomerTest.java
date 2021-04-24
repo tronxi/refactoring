@@ -2,7 +2,6 @@ package usantatecla.movies.v22;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -12,7 +11,7 @@ public class CustomerTest {
 	@Test
 	public void frequentWithoutRentalsTest() {
 		Customer customer = new CustomerBuilder().build();
-		assertEquals(0, customer.getTotalFrequentRenterPoints());
+		assertThat(0, is(equalTo(customer.getTotalFrequentRenterPoints())));
 	}
 
 	@Test
@@ -215,8 +214,7 @@ public class CustomerTest {
 
 		String result = new StatementBuilder().movie( 6)
 				.totalAmount(6).frequentRenterPoints(1).build();
-		assertEquals(result, statement);
+		assertThat(result, is(equalTo(statement)));
 	}
-	
-	
+
 }
