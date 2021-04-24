@@ -42,12 +42,12 @@ public class Customer {
 				.toString();
 	}
 
-	private double getTotalCharge() {
+	protected double getTotalCharge() {
 		return this.perform(Rental::getCharge,
 				charges -> charges.stream().reduce(0.0, Double::sum));
 	}
 	
-	private int getTotalFrequentRenterPoints() {
+	protected int getTotalFrequentRenterPoints() {
 		return this.perform(Rental::getFrequentRenterPoints,
 				frequentRenterPoints -> frequentRenterPoints.stream().reduce(0, Integer::sum));
 	}
