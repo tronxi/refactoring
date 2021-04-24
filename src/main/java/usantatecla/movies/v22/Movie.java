@@ -1,6 +1,6 @@
 package usantatecla.movies.v22;
 
-public class Movie {
+public abstract class Movie {
 
 	private String title;
 	
