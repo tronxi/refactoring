@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatementBuilder {
-	
+
 	private String customerName;
 	private List<String> movieNames;
 	private List<Double> amounts;
@@ -12,6 +12,7 @@ public class StatementBuilder {
 	private int frequentRenterPoints = 0;
 	
 	public StatementBuilder() {
+		this.customerName = CustomerBuilder.DEFAULT_CUSTOMER_NAME;
 		movieNames = new ArrayList<String>();
 		amounts = new ArrayList<Double>();
 	}
@@ -23,6 +24,12 @@ public class StatementBuilder {
 	
 	public StatementBuilder movie(String movieName, double amount) {
 		movieNames.add(movieName);
+		amounts.add(amount);
+		return this;
+	}
+
+	public StatementBuilder movie(double amount) {
+		movieNames.add(MovieBuilder.DEFAULT_MOVIE_NAME);
 		amounts.add(amount);
 		return this;
 	}

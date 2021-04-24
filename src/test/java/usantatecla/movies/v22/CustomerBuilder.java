@@ -5,10 +5,13 @@ import java.util.List;
 
 public class CustomerBuilder {
 
+	public static final String DEFAULT_CUSTOMER_NAME = "customerName";
+
 	private String name;
 	private List<Rental> rentals;
 	
 	public CustomerBuilder() {
+		this.name = DEFAULT_CUSTOMER_NAME;
 		rentals = new ArrayList<Rental>();
 	}
 	
