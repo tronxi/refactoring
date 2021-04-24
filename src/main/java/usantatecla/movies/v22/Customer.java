@@ -3,6 +3,7 @@ package usantatecla.movies.v22;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 
 public class Customer {
 
@@ -53,6 +54,14 @@ public class Customer {
 			result += each.getFrequentRenterPoints();
 		}
 		return result;
+	}
+
+	private <T> T perform(Function<Rental, T> map, Function<List<T>, T> reduce) {
+		List<T> result = new ArrayList<>();
+		for(Rental rental : this.rentals) {
+			result.add(map.apply(rental));
+		}
+		return reduce.apply(result);
 	}
 
 }
