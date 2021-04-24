@@ -27,33 +27,23 @@ public class Customer {
 	public String statement() {
 		Iterator<Rental> rentals = this.rentals.iterator();
 		String result = "Rental Record for " + this.getName() + "\n";
-		while (rentals.hasNext()) {
-			Rental each = rentals.next();
-			result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
-		}
+
+		result += this.perform(rental -> "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n",
+				strings -> String.join("", strings));
+
 		result += "Amount owed is " + String.valueOf(this.getTotalCharge()) + "\n";
 		result += "You earned " + String.valueOf(this.getTotalFrequentRenterPoints()) + " frequent renter points";
 		return result;
 	}
 
 	private double getTotalCharge() {
-		double result = 0;
-		Iterator<Rental> rentals = this.rentals.iterator();
-		while (rentals.hasNext()) {
-			Rental each = rentals.next();
-			result += each.getCharge();
-		}
-		return result;
+		return this.perform(Rental::getCharge,
+				charges -> charges.stream().reduce(0.0, Double::sum));
 	}
 	
 	private int getTotalFrequentRenterPoints() {
-		int result = 0;
-		Iterator<Rental> rentals = this.rentals.iterator();
-		while (rentals.hasNext()) {
-			Rental each = rentals.next();
-			result += each.getFrequentRenterPoints();
-		}
-		return result;
+		return this.perform(Rental::getFrequentRenterPoints,
+				frequentRenterPoints -> frequentRenterPoints.stream().reduce(0, Integer::sum));
 	}
 
 	private <T> T perform(Function<Rental, T> map, Function<List<T>, T> reduce) {
