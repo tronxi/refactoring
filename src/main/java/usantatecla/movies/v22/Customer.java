@@ -25,15 +25,21 @@ public class Customer {
 	}
 
 	public String statement() {
-		Iterator<Rental> rentals = this.rentals.iterator();
-		String result = "Rental Record for " + this.getName() + "\n";
-
-		result += this.perform(rental -> "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n",
+		String rentalResult = this.perform(rental -> "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n",
 				strings -> String.join("", strings));
 
-		result += "Amount owed is " + String.valueOf(this.getTotalCharge()) + "\n";
-		result += "You earned " + String.valueOf(this.getTotalFrequentRenterPoints()) + " frequent renter points";
-		return result;
+		return new StringBuilder()
+				.append("Rental Record for ")
+				.append(this.getName())
+				.append("\n")
+				.append(rentalResult)
+				.append("Amount owed is ")
+				.append(this.getTotalCharge())
+				.append("\n")
+				.append("You earned ")
+				.append(this.getTotalFrequentRenterPoints())
+				.append(" frequent renter points")
+				.toString();
 	}
 
 	private double getTotalCharge() {
