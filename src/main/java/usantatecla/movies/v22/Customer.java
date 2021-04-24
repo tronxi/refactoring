@@ -25,7 +25,7 @@ public class Customer {
 	}
 
 	public String statement() {
-		String rentalResult = this.perform(rental -> "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n",
+		String rentalResult = this.perform(rental -> "\t" + rental.getMovieTitle() + "\t" + rental.getCharge() + "\n",
 				strings -> String.join("", strings));
 
 		return new StringBuilder()
