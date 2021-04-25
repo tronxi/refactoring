@@ -1,3 +1,6 @@
+##Sergio García Sánchez 
+##Natalia Casanova Benito
+Nuestros cambios estan con commits sobra la version 22
 # Movies
 
 ## Refactoring: Movies
